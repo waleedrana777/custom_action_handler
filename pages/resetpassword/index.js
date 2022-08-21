@@ -24,7 +24,7 @@ export default function ResetPassword() {
                 // Password reset has been confirmed and new password updated.
                 // Display a link back to the app, or sign-in the user directly
                 // if the page is already from the app.
-                toast.success("Password reset successful");
+                toast.success("Password reset successful for " + accountEmail);
                 //wait for 2 seconds and redirect to the continueUrl
                 if (continueUrl) {
                     window.location.href = continueUrl;
