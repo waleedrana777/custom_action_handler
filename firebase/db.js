@@ -14,7 +14,6 @@ try {
     auth = getAuth(app);
 }
 catch (error) {
-    console.log(process.env.FIREBASE_API_KEY);
     console.log(error.message);
 }
 
