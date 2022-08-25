@@ -18,10 +18,11 @@ export default function VerifyEmail() {
         const {
             mode,
             oobCode,
-            continueUrl,
             lang,
             email,
         } = router.query;
+
+        var { continueUrl } = router.query;
 
         continueUrl = continueUrl + "?reload=true";
 
