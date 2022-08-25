@@ -28,7 +28,7 @@ export default function VerifyEmail() {
             checkActionCode(auth, actionCode).then(
                 //if valid, apply the action code
                 applyActionCode(auth, actionCode)
-                    .then(async (resp) => {
+                    .then(() => {
                         // Email address has been verified.
                         // const { email } = resp.user;
                         toast.success(resp.toString());
