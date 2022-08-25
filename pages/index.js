@@ -43,12 +43,13 @@ export default function Home() {
             mode,
             oobCode,
             continueUrl,
-            lang
+            lang,
+            email,
           }
         });
-        // handleVerifyEmail(auth, actionCode, continueUrl, lang);
         break;
       default:
+        break;
       // Error: invalid mode.
     }
 
