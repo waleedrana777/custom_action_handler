@@ -40,10 +40,10 @@ export default function Home() {
         router.push({
           pathname: '/verifyemail',
           query: {
-            mode: 'verifyEmail',
-            oobCode: oobCode,
-            continueUrl: continueUrl,
-            lang: lang
+            mode,
+            oobCode,
+            continueUrl,
+            lang
           }
         });
         // handleVerifyEmail(auth, actionCode, continueUrl, lang);
