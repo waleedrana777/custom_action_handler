@@ -23,6 +23,8 @@ export default function VerifyEmail() {
             email,
         } = router.query;
 
+        continueUrl = continueUrl + "?reload=true";
+
         function verifyEmailSuccess(actionCode) {
             setVerified(false);
             //check the action code if it is valid
@@ -58,7 +60,7 @@ export default function VerifyEmail() {
         }
 
         verifyEmailSuccess(oobCode);
-    }, [])
+    }, []);
 
     return (
         <div>
