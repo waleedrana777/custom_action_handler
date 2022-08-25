@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
   const router = useRouter();
-  const { mode, oobCode, continueUrl, lang, apiKey } = router.query;
+  const { mode, oobCode, continueUrl, lang, apiKey, email } = router.query;
 
   useEffect(() => {
 
