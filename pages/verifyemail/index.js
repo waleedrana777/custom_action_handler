@@ -65,7 +65,7 @@ export default function VerifyEmail() {
             <ToastContainer />
             {verified ? (
                 <>
-                    <h1>{{ email }} is verified</h1>
+                    <h1>{email} is verified</h1>
                     <button
                         onClick={
                             () => {
