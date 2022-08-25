@@ -30,7 +30,8 @@ export default function VerifyEmail() {
                 applyActionCode(auth, actionCode)
                     .then(async (resp) => {
                         // Email address has been verified.
-                        const { email } = resp.user;
+                        // const { email } = resp.user;
+                        console.log(resp);
                         setEmail(email);
                         setVerified(true);
                         toast.success("Email verified for " + email);
