@@ -31,17 +31,17 @@ export default function VerifyEmail() {
                     .then(async (resp) => {
                         // Email address has been verified.
                         // const { email } = resp.user;
-                        console.log(resp);
-                        setEmail(email);
+                        toast.success(resp.toString());
+                        // setEmail(email);
                         setVerified(true);
                         toast.success("Email verified for " + email);
 
                         //wait for 2 seconds and redirect to the continueUrl
-                        setTimeout(() => {
-                            if (continueUrl) {
-                                window.location.href = continueUrl;
-                            }
-                        }, 2000);
+                        // setTimeout(() => {
+                        //     if (continueUrl) {
+                        //         window.location.href = continueUrl;
+                        //     }
+                        // }, 2000);
                     })
                     .catch(error => {
                         toast.error("Error verifying email");
