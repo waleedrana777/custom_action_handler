@@ -20,6 +20,7 @@ export default function VerifyEmail() {
             oobCode,
             continueUrl,
             lang,
+            email,
         } = router.query;
 
         function verifyEmailSuccess(actionCode) {
@@ -30,9 +31,7 @@ export default function VerifyEmail() {
                 applyActionCode(auth, actionCode)
                     .then(() => {
                         // Email address has been verified.
-                        // const { email } = resp.user;
-                        toast.success(resp.toString());
-                        // setEmail(email);
+                        setEmail(email);
                         setVerified(true);
                         toast.success("Email verified for " + email);
 
@@ -51,7 +50,7 @@ export default function VerifyEmail() {
                         if (error.code === 'auth/invalid-continue-uri') {
                             toast.error("401: Invalid redirect URL");
                         }
-                        toast.error("500: Unhandled Server error" + error.message);
+                        toast.error("500: Unhandled Server error: " + error.message);
                     })
             ).catch(error => {
                 toast.error("Code is invalid or expired.Ask the user to verify their email address again.");
