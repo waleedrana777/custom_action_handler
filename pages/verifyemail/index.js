@@ -8,19 +8,23 @@ import { auth } from "../../firebase/db.js";
 export default function VerifyEmail() {
     const router = useRouter();
 
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState(null);
     const [verified, setVerified] = useState(false);
+    const [email, setEmail] = useState("");
     const [continueUrl, setContinueUrl] = useState("");
+    const [error, setError] = useState(null);
+
 
     useEffect(() => {
         if (!router.isReady) return;
+        toast.info("Verifying email address...");
 
-        const { mode, actionCode, email, lang } = router.query;
+        const { actionCode, email } = router.query;
+        toast.warn("actionCode: " + actionCode + " email: " + email);
 
         setContinueUrl(
             router.query.continueUrl ? router.query.continueUrl + "?reload=true" : ""
         );
+        toast.dark("set the continueUrl to: " + continueUrl);
 
         function verifyEmailSuccess() {
             setVerified(false);
