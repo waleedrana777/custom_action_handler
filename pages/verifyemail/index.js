@@ -16,17 +16,20 @@ export default function VerifyEmail() {
     useEffect(() => {
         if (!router.isReady) return;
 
+        const {
+            mode,
+            actionCode,
+            email,
+            lang,
+        } = router.query;
+
+        setContinueUrl(router.query.continueUrl ?
+            router.query.continueUrl + "?reload=true" : "");
+
         function verifyEmailSuccess() {
-            const {
-                mode,
-                actionCode,
-                email,
-                lang,
-            } = router.query;
+
 
             setVerified(false);
-            setContinueUrl(router.query.continueUrl ?
-                router.query.continueUrl + "?reload=true" : "");
 
             //check the action code if it is valid
             checkActionCode(auth, actionCode).then(
