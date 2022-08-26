@@ -16,25 +16,22 @@ export default function VerifyEmail() {
 
     useEffect(() => {
         if (!router.isReady) return;
-        const { actionCode, email } = router.query;
-        toast.info(" email: " + email);
 
-        setContinueUrl(
-            router.query.continueUrl ? router.query.continueUrl + "?reload=true" : ""
-        );
-        toast.warn("set the continueUrl to: " + router.query.continueUrl);
+        //VARS
+        const { oobCode, email } = router.query;
+        setContinueUrl(router.query.continueUrl ? router.query.continueUrl + "?reload=true" : "");
 
         function verifyEmailSuccess() {
             setVerified(false);
 
             //check the action code if it is valid
-            checkActionCode(auth, actionCode)
+            checkActionCode(auth, oobCode)
                 .then(
                     actionCodeInfo => {
                         toast.success("Code verified");
 
                         //if valid, apply the action code
-                        applyActionCode(auth, actionCode)
+                        applyActionCode(auth, oobCode)
                             .then(
                                 resp => {
                                     toast.success("Code applied");
