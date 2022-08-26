@@ -27,8 +27,6 @@ export default function VerifyEmail() {
             router.query.continueUrl + "?reload=true" : "");
 
         function verifyEmailSuccess() {
-
-
             setVerified(false);
 
             //check the action code if it is valid
@@ -49,21 +47,22 @@ export default function VerifyEmail() {
                                 window.location.href = continueUrl;
                             }
                         }, 2000);
-                    })
-                    .catch(error => {
+                    }, error => {
                         setError(true)
-                        toast.error("Error verifying email");
                         if (error.code === 'auth/user-not-found') {
-                            toast.error("404: User not found");
+                            toast.error("Error verifying email 404: User not found");
                         }
-                        if (error.code === 'auth/invalid-continue-uri') {
-                            toast.error("401: Invalid redirect URL");
+                        else if (error.code === 'auth/invalid-continue-uri') {
+                            toast.error("Error verifying email 401: Invalid redirect URL");
                         }
-                        toast.error("500: Unhandled Server error: " + error.message);
+                        else {
+                            toast.error("Error verifying email 500: Unhandled Server error: " + error.message);
+                        }
+                    }
+                    ).catch(error => {
+                        toast.error("Code is invalid or expired.Ask the user to verify their email address again.");
                     })
-            ).catch(error => {
-                toast.error("Code is invalid or expired.Ask the user to verify their email address again.");
-            });
+            )
         }
 
         verifyEmailSuccess();
