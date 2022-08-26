@@ -10,7 +10,6 @@ export default function VerifyEmail() {
 
     const [verified, setVerified] = useState(false);
     const [email, setEmail] = useState("");
-    const [continueUrl, setContinueUrl] = useState("");
     const [error, setError] = useState(null);
 
 
@@ -18,9 +17,7 @@ export default function VerifyEmail() {
         if (!router.isReady) return;
 
         //VARS
-        const { oobCode, email } = router.query;
-        setContinueUrl(router.query.continueUrl ? router.query.continueUrl + "?reload=true" : "");
-        toast.info(continueUrl);
+        const { oobCode, email, continueUrl } = router.query;
 
         function verifyEmailSuccess() {
             setVerified(false);
@@ -40,7 +37,7 @@ export default function VerifyEmail() {
                                 setTimeout(() => {
                                     toast.success("Redirecting --> " + continueUrl);
                                     if (continueUrl) {
-                                        window.location.href = router.query.continueUrl;
+                                        window.location.href = continueUrl;
                                         return;
                                     }
                                 }, 1000);
