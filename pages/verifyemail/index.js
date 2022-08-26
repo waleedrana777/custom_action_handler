@@ -41,13 +41,11 @@ export default function VerifyEmail() {
                                     setVerified(true);
 
                                     toast.success("Email address verified for " + email);
-                                    toast.success("Redirecting --> " + continueUrl);
 
                                     // wait for 2 seconds and redirect to the continueUrl
                                     setTimeout(() => {
-                                        if (continueUrl) {
-                                            window.location.href = continueUrl;
-                                        }
+                                        toast.success("Redirecting --> " + continueUrl);
+                                        window.location.href = continueUrl;
                                     }, 2000);
                                 }
                             ).catch(error => {
