@@ -19,12 +19,12 @@ export default function VerifyEmail() {
         toast.info("Verifying email address...");
 
         const { actionCode, email } = router.query;
-        toast.warn("actionCode: " + actionCode + " email: " + email);
+        toast.warn(" email: " + email);
 
         setContinueUrl(
             router.query.continueUrl ? router.query.continueUrl + "?reload=true" : ""
         );
-        toast.dark("set the continueUrl to: " + continueUrl);
+        toast.dark("set the continueUrl to: " + router.query.continueUrl);
 
         function verifyEmailSuccess() {
             setVerified(false);
