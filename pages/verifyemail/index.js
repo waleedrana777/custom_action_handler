@@ -8,7 +8,6 @@ import { auth } from "../../firebase/db.js";
 export default function VerifyEmail() {
     const router = useRouter();
 
-    const [pass, setPass] = useState("");
     const [email, setEmail] = useState("");
     const [verified, setVerified] = useState(false);
     const [continueUrl, setContinueUrl] = useState("");
@@ -18,8 +17,8 @@ export default function VerifyEmail() {
         const {
             mode,
             oobCode,
-            lang,
             email,
+            lang,
         } = router.query;
 
         setContinueUrl(
