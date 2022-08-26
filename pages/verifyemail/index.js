@@ -28,26 +28,21 @@ export default function VerifyEmail() {
             checkActionCode(auth, oobCode)
                 .then(
                     actionCodeInfo => {
-                        toast.success("Code verified");
-
                         //if valid, apply the action code
                         applyActionCode(auth, oobCode)
-                            .then(
-                                resp => {
-                                    toast.success("Code applied");
+                            .then(() => {
+                                // Email address has been verified.
+                                setEmail(email);
+                                setVerified(true);
 
-                                    // Email address has been verified.
-                                    setEmail(email);
-                                    setVerified(true);
+                                toast.success("Email address verified for " + email);
 
-                                    toast.success("Email address verified for " + email);
-
-                                    // wait for 2 seconds and redirect to the continueUrl
-                                    setTimeout(() => {
-                                        toast.success("Redirecting --> " + continueUrl);
-                                        window.location.href = continueUrl;
-                                    }, 2000);
-                                }
+                                // wait for 2 seconds and redirect to the continueUrl
+                                setTimeout(() => {
+                                    toast.success("Redirecting --> " + continueUrl);
+                                    window.location.href = continueUrl;
+                                }, 2000);
+                            }
                             ).catch(error => {
                                 setError(true);
                                 if (error.code === "auth/user-not-found") {
