@@ -60,12 +60,12 @@ export default function VerifyEmail() {
                             }
                         }
                     )
-                    .catch(error => {
-                        toast.error(
-                            "Link is invalid or expired.Ask the user to verify their email address again."
-                        );
-                    });
-            });
+            })
+                .catch(error => {
+                    toast.error(
+                        "Link is invalid or expired.Ask the user to verify their email address again."
+                    );
+                });
         }
 
         verifyEmailSuccess();
