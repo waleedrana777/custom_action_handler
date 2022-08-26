@@ -75,7 +75,7 @@ export default function VerifyEmail() {
                     <button
                         onClick={
                             () => {
-                                window.location.href = "https://firebase-auth-and-crud.vercel.app/";
+                                window.location.href = "https://firebase-auth-and-crud.vercel.app/?reload=true";
                             }
                         }
                     >Go back to home</button>
