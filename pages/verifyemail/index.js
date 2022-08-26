@@ -9,6 +9,7 @@ export default function VerifyEmail() {
     const router = useRouter();
 
     const [email, setEmail] = useState("");
+    const [error, setError] = useState(null);
     const [verified, setVerified] = useState(false);
     const [continueUrl, setContinueUrl] = useState("");
 
@@ -47,6 +48,7 @@ export default function VerifyEmail() {
                         }, 2000);
                     })
                     .catch(error => {
+                        setError(true)
                         toast.error("Error verifying email");
                         if (error.code === 'auth/user-not-found') {
                             toast.error("404: User not found");
@@ -78,8 +80,10 @@ export default function VerifyEmail() {
                         }
                     >Go back to home</button>
                 </>)
-                : <h1>Verifying email...</h1>
+                : (
+                    error ? <h1> Failed due to error</h1> : < h1 > Verifying email...</h1>
+                )
             }
-        </div>
+        </div >
     )
 }
