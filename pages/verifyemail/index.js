@@ -33,7 +33,7 @@ export default function VerifyEmail() {
                 applyActionCode(auth, actionCode)
                     .then(
                         resp => {
-                            toast.success("Code applied successfully");
+                            toast.success("Code applied");
 
                             // Email address has been verified.
                             setEmail(email);
