@@ -20,6 +20,7 @@ export default function VerifyEmail() {
         //VARS
         const { oobCode, email } = router.query;
         setContinueUrl(router.query.continueUrl ? router.query.continueUrl + "?reload=true" : "");
+        toast.info(continueUrl);
 
         function verifyEmailSuccess() {
             setVerified(false);
@@ -39,7 +40,7 @@ export default function VerifyEmail() {
                                 setTimeout(() => {
                                     toast.success("Redirecting --> " + continueUrl);
                                     if (continueUrl) {
-                                        window.location.href = continueUrl;
+                                        window.location.href = router.query.continueUrl;
                                         return;
                                     }
                                 }, 1000);
@@ -56,6 +57,7 @@ export default function VerifyEmail() {
                             });
                     })
                 .catch(error => {
+                    setError(true);
                     toast.error("Link is invalid or expired.Ask the user to verify their email address again.");
                 });
         }
