@@ -28,41 +28,42 @@ export default function VerifyEmail() {
             setVerified(false);
 
             //check the action code if it is valid
-            checkActionCode(auth, actionCode).then(actionCodeInfo => {
-                toast.success("Code verified");
+            checkActionCode(auth, actionCode)
+                .then(
+                    actionCodeInfo => {
+                        toast.success("Code verified");
 
-                //if valid, apply the action code
-                applyActionCode(auth, actionCode)
-                    .then(
-                        resp => {
-                            toast.success("Code applied");
+                        //if valid, apply the action code
+                        applyActionCode(auth, actionCode)
+                            .then(
+                                resp => {
+                                    toast.success("Code applied");
 
-                            // Email address has been verified.
-                            setEmail(email);
-                            setVerified(true);
+                                    // Email address has been verified.
+                                    setEmail(email);
+                                    setVerified(true);
 
-                            toast.success("Email address verified for " + email);
-                            toast.success("Redirecting --> " + continueUrl);
+                                    toast.success("Email address verified for " + email);
+                                    toast.success("Redirecting --> " + continueUrl);
 
-                            // wait for 2 seconds and redirect to the continueUrl
-                            setTimeout(() => {
-                                if (continueUrl) {
-                                    window.location.href = continueUrl;
+                                    // wait for 2 seconds and redirect to the continueUrl
+                                    setTimeout(() => {
+                                        if (continueUrl) {
+                                            window.location.href = continueUrl;
+                                        }
+                                    }, 2000);
                                 }
-                            }, 2000);
-                        },
-                        error => {
-                            setError(true);
-                            if (error.code === "auth/user-not-found") {
-                                toast.error("Error verifying email 404: User not found");
-                            } else if (error.code === "auth/invalid-continue-uri") {
-                                toast.error("Error verifying email 401: Invalid redirect URL");
-                            } else {
-                                toast.error("Unhandled Server Error 500: " + error.message);
-                            }
-                        }
-                    )
-            })
+                            ).catch(error => {
+                                setError(true);
+                                if (error.code === "auth/user-not-found") {
+                                    toast.error("Error verifying email 404: User not found");
+                                } else if (error.code === "auth/invalid-continue-uri") {
+                                    toast.error("Error verifying email 401: Invalid redirect URL");
+                                } else {
+                                    toast.error("Unhandled Server Error 500: " + error.message);
+                                }
+                            });
+                    })
                 .catch(error => {
                     toast.error(
                         "Link is invalid or expired.Ask the user to verify their email address again."
