@@ -16,15 +16,13 @@ export default function VerifyEmail() {
 
     useEffect(() => {
         if (!router.isReady) return;
-        toast.info("Verifying email address...");
-
         const { actionCode, email } = router.query;
-        toast.warn(" email: " + email);
+        toast.info(" email: " + email);
 
         setContinueUrl(
             router.query.continueUrl ? router.query.continueUrl + "?reload=true" : ""
         );
-        toast.dark("set the continueUrl to: " + router.query.continueUrl);
+        toast.warn("set the continueUrl to: " + router.query.continueUrl);
 
         function verifyEmailSuccess() {
             setVerified(false);
@@ -92,7 +90,7 @@ export default function VerifyEmail() {
             ) : error ? (
                 <h1> Failed due to error</h1>
             ) : (
-                <h1> Verifying email...</h1>
+                <h1> Verifying email address...</h1>
             )}
         </div>
     );
