@@ -37,6 +37,7 @@ export default function VerifyEmail() {
                         setEmail(email);
                         setVerified(true);
                         toast.success("Email verified for " + email);
+                        toast.success("Redirecting --> " + continueUrl);
 
                         // wait for 2 seconds and redirect to the continueUrl
                         setTimeout(() => {
@@ -69,9 +70,6 @@ export default function VerifyEmail() {
             {verified ? (
                 <>
                     <h1>{email} is verified</h1>
-                    <p>Redirecting to </p>
-                    <a href={continueUrl}>{continueUrl}</a>
-                    <p>...</p>
                     <button
                         onClick={
                             () => {
