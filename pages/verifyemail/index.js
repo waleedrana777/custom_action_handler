@@ -11,10 +11,10 @@ export default function VerifyEmail() {
     const [pass, setPass] = useState("");
     const [email, setEmail] = useState("");
     const [verified, setVerified] = useState(false);
-
+    const [continueUrl, setContinueUrl] = useState("");
 
     useEffect(() => {
-
+        if (!router.isReady) return;
         const {
             mode,
             oobCode,
@@ -22,9 +22,10 @@ export default function VerifyEmail() {
             email,
         } = router.query;
 
-        var { continueUrl } = router.query;
-
-        continueUrl = continueUrl + "?reload=true";
+        setContinueUrl(
+            router.query.continueUrl ?
+                router.query.continueUrl + "?reload=true"
+                : "Home");
 
         function verifyEmailSuccess(actionCode) {
             setVerified(false);
@@ -61,7 +62,7 @@ export default function VerifyEmail() {
         }
 
         verifyEmailSuccess(oobCode);
-    }, []);
+    }, [router.isReady]);
 
     return (
         <div>
