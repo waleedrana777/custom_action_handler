@@ -37,7 +37,7 @@ export default function VerifyEmail() {
 
                                 // wait for 2 seconds and redirect to the continueUrl
                                 setTimeout(() => {
-                                    toast.success(email + "verified, redirecting -- > " + continueUrl);
+                                    toast.success("Redirecting --> " + continueUrl);
                                     if (continueUrl) {
                                         window.location.href = continueUrl;
                                         return;
