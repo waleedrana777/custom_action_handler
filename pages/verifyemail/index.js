@@ -14,20 +14,19 @@ export default function VerifyEmail() {
 
     useEffect(() => {
         if (!router.isReady) return;
-        const {
-            mode,
-            oobCode,
-            email,
-            lang,
-        } = router.query;
 
-        setContinueUrl(
-            router.query.continueUrl ?
-                router.query.continueUrl + "?reload=true"
-                : "Home");
+        function verifyEmailSuccess() {
+            const {
+                mode,
+                actionCode,
+                email,
+                lang,
+            } = router.query;
 
-        function verifyEmailSuccess(actionCode) {
             setVerified(false);
+            setContinueUrl(router.query.continueUrl ?
+                router.query.continueUrl + "?reload=true" : "");
+
             //check the action code if it is valid
             checkActionCode(auth, actionCode).then(
                 //if valid, apply the action code
@@ -36,7 +35,8 @@ export default function VerifyEmail() {
                         // Email address has been verified.
                         setEmail(email);
                         setVerified(true);
-                        toast.success("Email verified for " + email);
+
+                        toast.success("Email address verified for " + email);
                         toast.success("Redirecting --> " + continueUrl);
 
                         // wait for 2 seconds and redirect to the continueUrl
@@ -61,7 +61,7 @@ export default function VerifyEmail() {
             });
         }
 
-        verifyEmailSuccess(oobCode);
+        verifyEmailSuccess();
     }, [router.isReady]);
 
     return (
