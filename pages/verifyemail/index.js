@@ -35,13 +35,14 @@ export default function VerifyEmail() {
                                 setEmail(email);
                                 setVerified(true);
 
-                                toast.success("Email address verified for " + email);
-
                                 // wait for 2 seconds and redirect to the continueUrl
                                 setTimeout(() => {
-                                    toast.success("Redirecting --> " + continueUrl);
-                                    window.location.href = continueUrl;
-                                }, 2000);
+                                    toast.success(email + "verified, redirecting -- > " + continueUrl);
+                                    if (continueUrl) {
+                                        window.location.href = continueUrl;
+                                        return;
+                                    }
+                                }, 1000);
                             }
                             ).catch(error => {
                                 setError(true);
@@ -55,10 +56,7 @@ export default function VerifyEmail() {
                             });
                     })
                 .catch(error => {
-                    toast.error(
-                        error.message
-                        // "Link is invalid or expired.Ask the user to verify their email address again."
-                    );
+                    toast.error("Link is invalid or expired.Ask the user to verify their email address again.");
                 });
         }
 
